@@ -15,14 +15,19 @@ class MeetingSerializer(serializers.ModelSerializer):
                 if m.id == self.instance.id:
                     continue
 
+            if not (m.sinceWhen >= data['tilWhen'] or m.tilWhen <= data['sinceWhen']):
+                raise serializers.ValidationError("time interval error")
+            '''
             if m.sinceWhen > data['sinceWhen']:
                 if m.sinceWhen < data['tilWhen']:
-                    raise serializers.ValidationError("time interval error")
+                    
             elif m.tilWhen > data['sinceWhen']:
                 raise serializers.ValidationError("time interval error")
+            '''
 
-        if data['sinceWhen'] > data['tilWhen']:
-            raise serializers.ValidationError("finish must occur after start")
+        if data['sinceWhen'] >= data['tilWhen']:
+                raise serializers.ValidationError("finish must occur after start")
+
         return data
 
     class Meta:
@@ -31,8 +36,8 @@ class MeetingSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    meeting = serializers.PrimaryKeyRelatedField(many=True, queryset=Meeting.objects.all())
+    meetings = serializers.PrimaryKeyRelatedField(many=True, queryset=Meeting.objects.all())
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'meeting')
+        fields = ('id', 'username', 'meetings')
