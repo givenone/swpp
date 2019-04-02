@@ -7,9 +7,16 @@ import React from 'react';
 const Meeting = ({id, created, sinceWhen, tilWhen, user, onDelete , username, password }) => {
     return(
         <div className = 'meeting'>
-            <div>id : {id}</div> <div>created : {created}</div> <div>sinceWhen : {sinceWhen}</div> <div>tilWhen : {tilWhen}</div>
-             <div>user : {user}</div>
-            <button type='submit' onClick={() => onDelete(id, username, password)} > Delete this Meeting</button>
+            <tr>
+                "ID" : {id} <br/>
+                "CREATED" : {created}<br/>
+                "SINCEWHEN" : {sinceWhen}<br/>
+                "TILWEHN" : {tilWhen}<br/>
+                "USER ID " {user}<br/>
+                <button type='submit' onClick={() => onDelete(id, username, password)} > Delete this Meeting</button>
+                <br/>
+                <br/>
+            </tr>
         </div>
     )
 }

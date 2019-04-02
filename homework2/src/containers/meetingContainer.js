@@ -6,7 +6,8 @@ const mapStateToProps = (state) => ({
 //TODOs
     meetings : state.Meetings,
     username : state.username,
-    password : state.password
+    password : state.password,
+    flag : state.isLogin
 })
 
 const mapDispatchToProps = (dispatch) => ({

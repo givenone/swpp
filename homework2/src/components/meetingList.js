@@ -5,7 +5,7 @@ class MeetingList extends Component {
   render() {
 
     // TODO : should make meetings in STORE of React App?
-    const {meetings, onDelete, username, password} = this.props;
+    const {meetings, onDelete, username, password,flag} = this.props;
     const meetList = meetings.map(
         (ok) => (
             <Meeting 
@@ -22,11 +22,20 @@ class MeetingList extends Component {
         )
     );
 
+    if(flag)
+    {
+      console.log("i am here")
     return (
       <div>
-          {meetList}
+          {meetList}       
       </div>
     )
+    }
+
+    else{
+      console.log("i am not here")
+      return null
+    }
   }
 }
 
